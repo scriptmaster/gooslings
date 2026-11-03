@@ -15,5 +15,4 @@ jobs:
       - run: python3 gooslings.py install
       - name: Every solution passes, every exercise is unsolved
         run: |
-          export PATH="$HOME/.gooslings/goose-v2026.3:$PATH"
           python3 gooslings.py selftest

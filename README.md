@@ -59,7 +59,7 @@ solutions/<topic>/  reference solutions (like rustlings' solutions/)
 intro, variables, functions, if, quiz, primitive_types, loops, arrays, memory,
 structs, enums, strings, modules, hashmaps, options, error_handling, generics,
 polymorphism, tests, lifetimes, iterators, references, serialization, threads,
-conversions, bits, c_interop. 
+conversions, bits, c_interop.
 
 Some Rust/Zig topics have no Goose equivalent (traits, Box/Rc/Arc/Cow, macros,
 async, allocators, defer, raw pointers, ...). They are kept as placeholder files
