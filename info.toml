@@ -1,0 +1,702 @@
+# gooslings exercise list, in the order they are presented.
+#
+# mode = "run"   : the exercise is compiled and run in-process (`goose file.goose`);
+#                  it passes when it type-checks and exits with status 0
+#                  (an `assert` that fails exits with status 1).
+# mode = "build" : the exercise is built with a C compiler (`goose build`) and the
+#                  executable is run. Needed for threads.
+# mode = "skip"  : NOT APPLICABLE to Goose. The .goose file explains why.
+
+[[exercises]]
+name = "intro1"
+dir = "intro"
+mode = "run"
+hint = '''
+Remove the "I AM NOT DONE" line once you have read this file and run it.
+Then run `python3 gooslings.py run intro1` and look at the output.
+'''
+
+[[exercises]]
+name = "intro2"
+dir = "intro"
+mode = "run"
+hint = '''
+print takes any number of arguments of any type and has no format string.
+The line has a typo: `prnt` is not a function. Fix the name.
+'''
+
+[[exercises]]
+name = "variables1"
+dir = "variables"
+mode = "run"
+hint = '''
+`let` creates a binding. Give `x` a declaration.
+'''
+
+[[exercises]]
+name = "variables2"
+dir = "variables"
+mode = "run"
+hint = '''
+The type of a variable follows its name: `let x: i32 = ...`.
+A `let` without an initializer must be assigned exactly once on every path.
+'''
+
+[[exercises]]
+name = "variables3"
+dir = "variables"
+mode = "run"
+hint = '''
+Goose has two kinds of binding. `let` cannot be re-assigned, `var` can.
+'''
+
+[[exercises]]
+name = "variables4"
+dir = "variables"
+mode = "run"
+hint = '''
+`count++` is a statement, not an expression, so it cannot be used inside print(...).
+Increment first, then print.
+'''
+
+[[exercises]]
+name = "variables5"
+dir = "variables"
+mode = "run"
+hint = '''
+A `let` hides nothing by itself, but an inner scope may redeclare a name (shadowing).
+Use `let` again with the new type instead of assigning a string to a number.
+'''
+
+[[exercises]]
+name = "variables6"
+dir = "variables"
+mode = "run"
+hint = '''
+A `let` or `const` global with a constant initializer is a named constant.
+It needs a value. Don't give it a type if you want it to adapt to any integer type.
+'''
+
+[[exercises]]
+name = "variables7"
+dir = "variables"
+mode = "run"
+hint = '''
+`const` makes the *contents* read-only, `let` only forbids re-binding.
+Which of the two writes below can never work? Remove or change it.
+'''
+
+[[exercises]]
+name = "functions1"
+dir = "functions"
+mode = "run"
+hint = '''
+Declare a function with `fn name() { ... }`.
+'''
+
+[[exercises]]
+name = "functions2"
+dir = "functions"
+mode = "run"
+hint = '''
+Parameters have the name first and the type after: `num: i64`.
+The parameter is missing its name.
+'''
+
+[[exercises]]
+name = "functions3"
+dir = "functions"
+mode = "run"
+hint = '''
+This function takes one argument and the call site gives none.
+'''
+
+[[exercises]]
+name = "functions4"
+dir = "functions"
+mode = "run"
+hint = '''
+A function's result is the value of its last expression, with no semicolon.
+`if` is an expression, so it needs both branches to produce a value.
+'''
+
+[[exercises]]
+name = "functions5"
+dir = "functions"
+mode = "run"
+hint = '''
+A trailing semicolon turns the last expression into a statement, so the function returns nothing.
+Remove the semicolon or write `return x * x;`.
+'''
+
+[[exercises]]
+name = "functions6"
+dir = "functions"
+mode = "run"
+hint = '''
+There is no tuple type. A function may return several values: `-> i64, bool`.
+The caller takes all of them with `let q, ok = f(..);`.
+'''
+
+[[exercises]]
+name = "functions7"
+dir = "functions"
+mode = "run"
+hint = '''
+Trailing parameters can have defaults: `fn f(x: i64, scale: i64 = 1)`.
+'''
+
+[[exercises]]
+name = "functions8"
+dir = "functions"
+mode = "run"
+hint = '''
+`x.f(a)` is exactly `f(x, a)`. Goose has no methods, only free functions.
+The call `n.double()` already works if a function `double(n)` exists.
+'''
+
+[[exercises]]
+name = "functions9"
+dir = "functions"
+mode = "run"
+hint = '''
+Overloads are resolved on argument types, so each needs a different parameter type.
+'''
+
+[[exercises]]
+name = "if1"
+dir = "if"
+mode = "run"
+hint = '''
+`if` is an expression: `let m = if a > b { a } else { b };`
+'''
+
+[[exercises]]
+name = "if2"
+dir = "if"
+mode = "run"
+hint = '''
+Chain `else if`. The final `else` makes the whole expression complete.
+The strings are all `const u8[:]` so the branches agree on a type.
+'''
+
+[[exercises]]
+name = "if3"
+dir = "if"
+mode = "run"
+hint = '''
+All branches of an `if` expression must have the same type.
+One branch gives a number and another a string. Make them agree.
+'''
+
+[[exercises]]
+name = "if4"
+dir = "if"
+mode = "run"
+hint = '''
+A `match` on an integer takes literals and half-open ranges `lo..hi` (hi is excluded).
+`_` is the catch-all arm and every match must be exhaustive.
+'''
+
+[[exercises]]
+name = "if5"
+dir = "if"
+mode = "run"
+hint = '''
+A `block { ... }` lets `break value;` leave early with a value.
+The final expression of the block is its value if nothing breaks out first.
+'''
+
+[[exercises]]
+name = "if6"
+dir = "if"
+mode = "run"
+hint = '''
+A `match` arm lists several values separated by commas: `7, 10..12 => ...`.
+'''
+
+[[exercises]]
+name = "quiz1"
+dir = "quiz"
+mode = "run"
+hint = '''
+Think about `if`/`else if`/`else` as an expression with an integer result.
+'''
+
+[[exercises]]
+name = "primitive1"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+`bool` values are `true` and `false`. Comparison operators give a bool.
+'''
+
+[[exercises]]
+name = "primitive2"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+A character literal like 'a' is a number: the byte value, of type u8.
+'''
+
+[[exercises]]
+name = "primitive3"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+A fixed array has its size in the type: `i32[4]`. The fill form is `[0; 4]`.
+'''
+
+[[exercises]]
+name = "primitive4"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+A slice `T[:]` is a view of a run of elements. Use `a[1..4]` for elements 1, 2 and 3.
+'''
+
+[[exercises]]
+name = "primitive5"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+`a[^2..]` counts from the end: the last two elements.
+'''
+
+[[exercises]]
+name = "primitive6"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+There is no tuple type. A struct literal can list its fields in order: `Point { 1, 2 }`.
+A function can also return several values and a caller can take them with `let a, b = f();`
+'''
+
+[[exercises]]
+name = "primitive7"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+Arithmetic happens at the operands' own width. u8 + u8 is an 8-bit add, and unsigned arithmetic wraps.
+Widen one operand with `as` before adding if you need the bigger result.
+'''
+
+[[exercises]]
+name = "primitive8"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+`%` is Euclidean in Goose: the result is never negative.
+`/` truncates toward zero. `rem(a, b)` from `std` pairs with `/`.
+'''
+
+[[exercises]]
+name = "primitive9"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+A float literal has no width of its own. Choose one by writing the type.
+'''
+
+[[exercises]]
+name = "primitive10"
+dir = "primitive_types"
+mode = "run"
+hint = '''
+`as` converts and is checked in debug. `as!` never checks and truncates.
+'''
+
+[[exercises]]
+name = "loops1"
+dir = "loops"
+mode = "run"
+hint = '''
+`for i in 5 { }` runs i = 0..4. `for i in 2..5 { }` runs i = 2, 3, 4.
+'''
+
+[[exercises]]
+name = "loops2"
+dir = "loops"
+mode = "run"
+hint = '''
+`while cond { ... }` repeats while the condition holds.
+'''
+
+[[exercises]]
+name = "loops3"
+dir = "loops"
+mode = "run"
+hint = '''
+`loop { }` runs forever. Use `break;` to leave it.
+'''
+
+[[exercises]]
+name = "loops4"
+dir = "loops"
+mode = "run"
+hint = '''
+`for x, i in xs` gives the element and its index.
+'''
+
+[[exercises]]
+name = "loops5"
+dir = "loops"
+mode = "run"
+hint = '''
+`for &x in xs` binds a reference: writes go to the array.
+Without `&` the loop variable is a copy.
+'''
+
+[[exercises]]
+name = "loops6"
+dir = "loops"
+mode = "run"
+hint = '''
+`continue;` skips to the next iteration.
+'''
+
+[[exercises]]
+name = "loops7"
+dir = "loops"
+mode = "run"
+hint = '''
+`return value;` leaves the whole function from inside a loop.
+'''
+
+[[exercises]]
+name = "loops8"
+dir = "loops"
+mode = "run"
+hint = '''
+`for i: u8 in 0..256` is allowed and visits every u8, even though 256 does not fit in a u8.
+'''
+
+[[exercises]]
+name = "arrays1"
+dir = "arrays"
+mode = "run"
+hint = '''
+`[>..]` is the grow-only array: the one to reach for. `push` appends.
+'''
+
+[[exercises]]
+name = "arrays2"
+dir = "arrays"
+mode = "run"
+hint = '''
+`var` is needed to grow an array... but does the variable need to be a `var` at all?
+`push` writes into the array, which needs a `var` (or `let`) of a growable type.
+'''
+
+[[exercises]]
+name = "arrays3"
+dir = "arrays"
+mode = "run"
+hint = '''
+`pop` removes the last element of a grow-shrink array `[>..<]`: a stack.
+A fixed array `T[4]` can never grow.
+'''
+
+[[exercises]]
+name = "arrays4"
+dir = "arrays"
+mode = "run"
+hint = '''
+`insert_at(xs, i, v)` and `remove_at(xs, i)` come from std; they shift elements.
+'''
+
+[[exercises]]
+name = "arrays5"
+dir = "arrays"
+mode = "run"
+hint = '''
+`sort(xs)` sorts in place by `<`. `sort(xs) { a, b => a > b }` sorts by your own ordering.
+'''
+
+[[exercises]]
+name = "arrays6"
+dir = "arrays"
+mode = "run"
+hint = '''
+`reverse(xs)`, `contains(xs, v)` and `position(xs, v)` are in std.
+'''
+
+[[exercises]]
+name = "arrays7"
+dir = "arrays"
+mode = "run"
+hint = '''
+`a[1..3]` is a slice and `total(xs: i64[:])` accepts any array kind.
+'''
+
+[[exercises]]
+name = "arrays8"
+dir = "arrays"
+mode = "run"
+hint = '''
+Pick the array kind that matches the job. A string builder grows, a field is fixed, a finished string is frozen.
+'''
+
+[[exercises]]
+name = "arrays9"
+dir = "arrays"
+mode = "run"
+hint = '''
+The fill form `[0; 8]` makes a big array cheaply, and `fill(xs, v)` overwrites everything.
+'''
+
+[[exercises]]
+name = "memory1"
+dir = "memory"
+mode = "run"
+hint = '''
+Non-fixed values never copy implicitly. `copy(a)` makes an explicit O(n) copy.
+Without it, `var b = a;` binds b to a by reference.
+'''
+
+[[exercises]]
+name = "memory2"
+dir = "memory"
+mode = "run"
+hint = '''
+The allocation of a scope is freed when the scope ends: the closing brace resets a pointer.
+A reference to `scratch` must not outlive it. Copy the data out instead.
+'''
+
+[[exercises]]
+name = "memory3"
+dir = "memory"
+mode = "run"
+hint = '''
+`push` returns a reference to the new element. Bind it with `.=` and it stays valid.
+'''
+
+[[exercises]]
+name = "memory4"
+dir = "memory"
+mode = "run"
+hint = '''
+`.=` binds or retargets a *reference*, while `=` copies the value.
+`var x .= xs[0];` names the element itself.
+'''
+
+[[exercises]]
+name = "memory5"
+dir = "memory"
+mode = "run"
+hint = '''
+A function parameter of type `T&` takes a reference: the caller's variable is modified.
+Write the parameter as `n: i64&`.
+'''
+
+[[exercises]]
+name = "memory6"
+dir = "memory"
+mode = "run"
+hint = '''
+A `const` slice is read-only. A function that wants to write needs a writable slice.
+'''
+
+[[exercises]]
+name = "move_semantics1"
+dir = "move_semantics"
+mode = "skip"
+hint = '''
+
+'''
+
+[[exercises]]
+name = "structs1"
+dir = "structs"
+mode = "run"
+hint = '''
+`struct Name { field: Type, ... }`. A literal lists the fields in order or by name.
+'''
+
+[[exercises]]
+name = "structs2"
+dir = "structs"
+mode = "run"
+hint = '''
+A field may declare a default: `hp: i32 = 100`. A literal may then leave it out.
+'''
+
+[[exercises]]
+name = "structs3"
+dir = "structs"
+mode = "run"
+hint = '''
+Ending a literal in `..` gives every unmentioned field its type's default: zero, empty, null.
+'''
+
+[[exercises]]
+name = "structs4"
+dir = "structs"
+mode = "run"
+hint = '''
+There are no `impl` blocks. Write a free function; `p.moved(1, 2)` is `moved(p, 1, 2)`.
+'''
+
+[[exercises]]
+name = "structs5"
+dir = "structs"
+mode = "run"
+hint = '''
+A `u8[..16]` field keeps a small string inline. Use it so the struct stays fixed-size.
+'''
+
+[[exercises]]
+name = "structs6"
+dir = "structs"
+mode = "run"
+hint = '''
+A generic struct takes type parameters: `struct Pair<T> { a: T, b: T }`.
+'''
+
+[[exercises]]
+name = "structs7"
+dir = "structs"
+mode = "run"
+hint = '''
+A struct may contain variable-size fields; they are stored inline, in declaration order.
+`u8[varint]` is a finished string with a variable-length length, `varint` an integer as wide as its value needs.
+'''
+
+[[exercises]]
+name = "structs8"
+dir = "structs"
+mode = "run"
+hint = '''
+`format(out, ...)` appends to a builder. Define `fn format(out: u8[>..]&, p: Point)` and print/str will use it.
+'''
+
+[[exercises]]
+name = "enums1"
+dir = "enums"
+mode = "run"
+hint = '''
+`enum Name { A, B { field: i64 }, C }`
+'''
+
+[[exercises]]
+name = "enums2"
+dir = "enums"
+mode = "run"
+hint = '''
+A variant can have named payload fields: `Move { x: i64, y: i64 }`.
+'''
+
+[[exercises]]
+name = "enums3"
+dir = "enums"
+mode = "run"
+hint = '''
+`match` must cover every variant. `Move m => ...` binds the payload to `m`.
+'''
+
+[[exercises]]
+name = "enums4"
+dir = "enums"
+mode = "run"
+hint = '''
+A case function is an overload per variant: `fn area(s: Shape.Circle)`. The call dispatches on the tag.
+The compiler checks exhaustiveness: add the missing case.
+'''
+
+[[exercises]]
+name = "enums5"
+dir = "enums"
+mode = "run"
+hint = '''
+Fixed mode (`Shape`) is indexable and overwritable. Variable mode (`Shape..`) gives each value its own size and allows `&` binders.
+The element type needs the two trailing dots: `Shape..[>..]`.
+'''
+
+[[exercises]]
+name = "enums6"
+dir = "enums"
+mode = "run"
+hint = '''
+In fixed mode a value can be overwritten with another variant, in place: `shapes[2] = Shape.Rect { ... }`.
+'''
+
+[[exercises]]
+name = "strings1"
+dir = "strings"
+mode = "run"
+hint = '''
+There is no string type: a string is any `u8` array. `u8[>..]` is a builder.
+'''
+
+[[exercises]]
+name = "strings2"
+dir = "strings"
+mode = "run"
+hint = '''
+`str(...)` formats anything into a fresh string built directly where it is needed.
+'''
+
+[[exercises]]
+name = "strings3"
+dir = "strings"
+mode = "run"
+hint = '''
+`trim(s)` returns a sub-slice with surrounding whitespace removed; `find(s, "=")` gives the index or -1.
+Slicing costs nothing: `body[..eq]` is everything before `eq`.
+'''
+
+[[exercises]]
+name = "strings4"
+dir = "strings"
+mode = "run"
+hint = '''
+`split(s, ',')` gives an array of slices into s. `words(s)` splits at runs of whitespace.
+'''
+
+[[exercises]]
+name = "strings5"
+dir = "strings"
+mode = "run"
+hint = '''
+`parse_int(s)` returns the number and a bool saying whether it was valid.
+'''
+
+[[exercises]]
+name = "strings6"
+dir = "strings"
+mode = "run"
+hint = '''
+`format_int(out, v, base, width, pad)` right-aligns; `to_upper` works in place on ASCII.
+'''
+
+[[exercises]]
+name = "strings7"
+dir = "strings"
+mode = "run"
+hint = '''
+`join(out, parts, sep)` appends the parts separated by sep.
+'''
+
+[[exercises]]
+name = "strings8"
+dir = "strings"
+mode = "run"
+hint = '''
+Text that spans lines is a `"""` string. It is raw (no escapes), and the indentation of the closing `"""` is removed from every line.
+'''
+
+[[exercises]]
+name = "strings9"
+dir = "strings"
+mode = "run"
+hint = '''
+`each_split(s, sep) { ... }` calls the block for each part; `it` is the implicit parameter.
+'''
+
+[[exercises]]
+name = "strings10"
+dir = "strings"
+mode = "run"
+hint = '''
+`each_utf8(s) { ... }` gives code points; `push_utf8(out, cp)` appends one.
+'''
