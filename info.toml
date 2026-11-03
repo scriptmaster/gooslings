@@ -700,3 +700,834 @@ mode = "run"
 hint = '''
 `each_utf8(s) { ... }` gives code points; `push_utf8(out, cp)` appends one.
 '''
+
+[[exercises]]
+name = "modules1"
+dir = "modules"
+mode = "run"
+hint = '''
+`import std;` loads the standard library module of that name. Imports create no namespace.
+'''
+
+[[exercises]]
+name = "modules2"
+dir = "modules"
+mode = "run"
+hint = '''
+`namespace geo;` at the top of the file puts the declarations in `geo`. Use `geo::name` from outside.
+`fn ::main()` declares main in the global namespace even inside a namespaced file.
+'''
+
+[[exercises]]
+name = "modules3"
+dir = "modules"
+mode = "run"
+hint = '''
+Declarations from `dictionary` are in the global namespace once it is imported.
+'''
+
+[[exercises]]
+name = "modules4"
+dir = "modules"
+mode = "run"
+hint = '''
+`fn main` is the entry point and it must be in the global namespace of the root file.
+Inside a namespaced file, `fn ::main()` declares it globally.
+'''
+
+[[exercises]]
+name = "dictionary1"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+`insert(key, value)` overwrites and returns true if the key was new; `get(key)` returns an optional.
+'''
+
+[[exercises]]
+name = "dictionary2"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+`update(key, initial) { it += 1; }` looks the key up once and runs the block on the value.
+'''
+
+[[exercises]]
+name = "dictionary3"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+`contains(key)` tests, `remove(key)` returns whether something was removed.
+'''
+
+[[exercises]]
+name = "dictionary4"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+A set is a dictionary whose value is a bool.
+'''
+
+[[exercises]]
+name = "dictionary5"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+`each() { key, val => ... }` visits every entry in unspecified order; `val` is a reference.
+'''
+
+[[exercises]]
+name = "dictionary6"
+dir = "hashmaps"
+mode = "run"
+hint = '''
+A reference from `get` must be done with before the next insert. Use it first, then insert.
+'''
+
+[[exercises]]
+name = "options1"
+dir = "options"
+mode = "run"
+hint = '''
+`T?` is an optional, a nullable reference. `null` is its empty value.
+'''
+
+[[exercises]]
+name = "options2"
+dir = "options"
+mode = "run"
+hint = '''
+An optional must be narrowed before use: `if opt { ... }` makes it a plain reference inside.
+'''
+
+[[exercises]]
+name = "options3"
+dir = "options"
+mode = "run"
+hint = '''
+`guard opt else { return ...; }` narrows for the rest of the block.
+'''
+
+[[exercises]]
+name = "options4"
+dir = "options"
+mode = "run"
+hint = '''
+`assert(opt)` narrows an optional for the rest of the block, or aborts when it is null.
+'''
+
+[[exercises]]
+name = "options5"
+dir = "options"
+mode = "run"
+hint = '''
+`while opt { ... }` re-tests the condition each time and `cur .= cur.next` retargets the reference.
+'''
+
+[[exercises]]
+name = "errors1"
+dir = "error_handling"
+mode = "run"
+hint = '''
+There is no Result type. By custom a trailing `bool` says whether the rest means anything.
+'''
+
+[[exercises]]
+name = "errors2"
+dir = "error_handling"
+mode = "run"
+hint = '''
+Use `parse_int` from std and check its bool.
+'''
+
+[[exercises]]
+name = "errors3"
+dir = "error_handling"
+mode = "run"
+hint = '''
+`return E from f` returns E as the result of the innermost active call of f, however many frames up.
+The function with the `from` must be called (dynamically) inside `load`.
+'''
+
+[[exercises]]
+name = "errors4"
+dir = "error_handling"
+mode = "run"
+hint = '''
+`guard c else { ... }` states what the rest of the block relies on.
+'''
+
+[[exercises]]
+name = "errors5"
+dir = "error_handling"
+mode = "run"
+hint = '''
+`exception::try<E>(body) { error => ... }` catches `exception::throw(value)` calls made any number of calls below.
+'''
+
+[[exercises]]
+name = "errors6"
+dir = "error_handling"
+mode = "run"
+hint = '''
+`assert(cond)` stops the program when the condition is false. `abort(msg)` stops it with a message.
+'''
+
+[[exercises]]
+name = "errors7"
+dir = "error_handling"
+mode = "skip"
+hint = '''
+
+'''
+
+[[exercises]]
+name = "generics1"
+dir = "generics"
+mode = "run"
+hint = '''
+A parameter with no type annotation is generic.
+'''
+
+[[exercises]]
+name = "generics2"
+dir = "generics"
+mode = "run"
+hint = '''
+The result type must be the same `T` as the element type of the slice.
+'''
+
+[[exercises]]
+name = "generics3"
+dir = "generics"
+mode = "run"
+hint = '''
+A type parameter that no argument carries must be written explicitly: `zero<f64>()`.
+'''
+
+[[exercises]]
+name = "generics4"
+dir = "generics"
+mode = "run"
+hint = '''
+Generic functions are specialized per call, so `T[:]` accepts a slice of any element type.
+'''
+
+[[exercises]]
+name = "generics5"
+dir = "generics"
+mode = "run"
+hint = '''
+Overloads resolve on argument types, and a slice parameter takes any array kind.
+'''
+
+[[exercises]]
+name = "generics6"
+dir = "generics"
+mode = "run"
+hint = '''
+A function value is a compile-time entity passed as a generic parameter, called as `F(x)`.
+A trailing block after the call is that function value: `apply_twice(3) { it * 2 }`.
+'''
+
+[[exercises]]
+name = "generics7"
+dir = "generics"
+mode = "run"
+hint = '''
+`const for <U> in types<i8, u16, f32> { ... }` expands the body once per type, at compile time.
+'''
+
+[[exercises]]
+name = "generics8"
+dir = "generics"
+mode = "run"
+hint = '''
+`fields<T>` binds each field's name and an accessor, usable as `v.A`.
+'''
+
+[[exercises]]
+name = "polymorphism1"
+dir = "polymorphism"
+mode = "run"
+hint = '''
+There are no interfaces. Overloads on the type do the job.
+'''
+
+[[exercises]]
+name = "polymorphism2"
+dir = "polymorphism"
+mode = "run"
+hint = '''
+A generic function is checked at each instantiation, so any type with an overload of `name` works.
+'''
+
+[[exercises]]
+name = "polymorphism3"
+dir = "polymorphism"
+mode = "run"
+hint = '''
+An enum is the only dynamic polymorphism. Add a variant and a case function.
+'''
+
+[[exercises]]
+name = "polymorphism4"
+dir = "polymorphism"
+mode = "run"
+hint = '''
+`fn format(out: u8[>..]&, x: T)` is how a type renders itself (Display/Debug).
+'''
+
+[[exercises]]
+name = "tests1"
+dir = "tests"
+mode = "run"
+hint = '''
+`assert(cond)` aborts the program with the source line when `cond` is false.
+'''
+
+[[exercises]]
+name = "tests2"
+dir = "tests"
+mode = "run"
+hint = '''
+Compare with `==`. Arrays and strings compare by contents.
+'''
+
+[[exercises]]
+name = "tests3"
+dir = "tests"
+mode = "run"
+hint = '''
+Write your own checks as functions; each runs the program's code under test.
+'''
+
+[[exercises]]
+name = "tests4"
+dir = "tests"
+mode = "run"
+hint = '''
+`--debug` adds overflow and range checks that name the line. Without it signed overflow wraps.
+'''
+
+[[exercises]]
+name = "lifetimes1"
+dir = "lifetimes"
+mode = "run"
+hint = '''
+A reference must not outlive the variable that owns its target. Declare `inner` in the same scope as `w`.
+There are no lifetime annotations: the compiler infers every root.
+'''
+
+[[exercises]]
+name = "lifetimes2"
+dir = "lifetimes"
+mode = "run"
+hint = '''
+A slice of a local dies with the function. Return the growable array itself: it is built in the caller's variable.
+'''
+
+[[exercises]]
+name = "lifetimes3"
+dir = "lifetimes"
+mode = "run"
+hint = '''
+A struct that holds a slice has the root of whatever it points at. Store the text inline instead: `u8[..16]`.
+'''
+
+[[exercises]]
+name = "lifetimes4"
+dir = "lifetimes"
+mode = "run"
+hint = '''
+A grow-only array cannot shrink while a reference into it is still used later. Use the reference first.
+'''
+
+[[exercises]]
+name = "lifetimes5"
+dir = "lifetimes"
+mode = "run"
+hint = '''
+A reference into a grow-shrink array `[>..<]` is valid only until it shrinks. Keep an index instead.
+'''
+
+[[exercises]]
+name = "iterators1"
+dir = "iterators"
+mode = "run"
+hint = '''
+`xs.map() { it * it }` builds a new array straight into its destination.
+'''
+
+[[exercises]]
+name = "iterators2"
+dir = "iterators"
+mode = "run"
+hint = '''
+`filter` keeps the elements for which the block is true.
+'''
+
+[[exercises]]
+name = "iterators3"
+dir = "iterators"
+mode = "run"
+hint = '''
+`fold(xs, init) { acc, x => ... }` threads an accumulator through the array.
+'''
+
+[[exercises]]
+name = "iterators4"
+dir = "iterators"
+mode = "run"
+hint = '''
+`find() { cond }` returns the first match as an optional reference; `find_index` returns an index or -1.
+'''
+
+[[exercises]]
+name = "iterators5"
+dir = "iterators"
+mode = "run"
+hint = '''
+`sum(xs)` adds from `default<T>()`; `min(xs)` and `max(xs)` assert the array is not empty.
+'''
+
+[[exercises]]
+name = "iterators6"
+dir = "iterators"
+mode = "run"
+hint = '''
+`each_chunk(xs, n) { chunk, i => ... }` visits slices of n elements (the last may be shorter).
+'''
+
+[[exercises]]
+name = "iterators7"
+dir = "iterators"
+mode = "run"
+hint = '''
+Walk two arrays together with the index form of `for`: `for x, i in a`.
+'''
+
+[[exercises]]
+name = "iterators8"
+dir = "iterators"
+mode = "run"
+hint = '''
+A block may `return` from the *enclosing* function, not from the function calling the block.
+'''
+
+[[exercises]]
+name = "iterators9"
+dir = "iterators"
+mode = "run"
+hint = '''
+Write your own higher-order function with a type parameter `F` and call it with `F(x)`.
+'''
+
+[[exercises]]
+name = "references1"
+dir = "references"
+mode = "run"
+hint = '''
+Both parameters must be references (`i64&`) for the swap to reach the caller's variables.
+'''
+
+[[exercises]]
+name = "references2"
+dir = "references"
+mode = "run"
+hint = '''
+`.==` asks whether two references are the *same* element; `==` compares the values.
+'''
+
+[[exercises]]
+name = "references3"
+dir = "references"
+mode = "run"
+hint = '''
+A relative reference stores a narrow offset: `Node&<u32>?` is 4 bytes and uses 0 as null.
+A link that can be empty must be optional: add the `?`.
+'''
+
+[[exercises]]
+name = "references4"
+dir = "references"
+mode = "run"
+hint = '''
+`.=` on a field stores the offset to the pushed element, `=` would try to copy a Node into a link.
+'''
+
+[[exercises]]
+name = "references5"
+dir = "references"
+mode = "run"
+hint = '''
+A `reusable` pool pairs an array with a hidden freelist: `free(i)` records a slot, `alloc_index` reuses it.
+'''
+
+[[exercises]]
+name = "serialization1"
+dir = "serialization"
+mode = "run"
+hint = '''
+`a.to_bytes()` is a framed image of a whole array; `from_bytes<T>(image)` verifies it and returns the value and a bool.
+'''
+
+[[exercises]]
+name = "serialization2"
+dir = "serialization"
+mode = "run"
+hint = '''
+`from_bytes` verifies every tag, length and link before the bytes become a value; hostile input is `false` and an empty array.
+'''
+
+[[exercises]]
+name = "threads1"
+dir = "threads"
+mode = "build"
+hint = '''
+Threads need a real C compiler (`goose build`); gooslings does that for exercises marked mode = "build".
+A thread_fn is declared with `thread_fn`, and started with thread_spawn(worker); wait for it with thread_wait(id).
+'''
+
+[[exercises]]
+name = "threads2"
+dir = "threads"
+mode = "build"
+hint = '''
+Each worker needs its own quit message, so send one `-1` job per worker.
+'''
+
+[[exercises]]
+name = "threads3"
+dir = "threads"
+mode = "build"
+hint = '''
+A global that a worker increments is the worker's own copy. Send the answer back through a queue instead.
+'''
+
+[[exercises]]
+name = "threads4"
+dir = "threads"
+mode = "build"
+hint = '''
+`thread_spawn_contained` makes a worker whose failed asserts end only that worker; `thread_wait(id, msg)` returns false and gives the message.
+'''
+
+[[exercises]]
+name = "conversions1"
+dir = "conversions"
+mode = "run"
+hint = '''
+A narrower integer widens into a wider one implicitly; the other direction needs `as`.
+'''
+
+[[exercises]]
+name = "conversions2"
+dir = "conversions"
+mode = "run"
+hint = '''
+`u32 + i32` is a compile error: the language will not guess which you meant. Cast one of them.
+'''
+
+[[exercises]]
+name = "conversions3"
+dir = "conversions"
+mode = "run"
+hint = '''
+Integers become floats implicitly, but a float becomes an integer only through `as`, truncating toward zero.
+'''
+
+[[exercises]]
+name = "conversions4"
+dir = "conversions"
+mode = "run"
+hint = '''
+`format_int(out, v, base, width, pad)` for rendering and `parse_int(s, base)` for reading a different base.
+'''
+
+[[exercises]]
+name = "conversions5"
+dir = "conversions"
+mode = "run"
+hint = '''
+`parse_flt` parses a float and, like `parse_int`, returns a validity flag.
+'''
+
+[[exercises]]
+name = "bits1"
+dir = "bits"
+mode = "run"
+hint = '''
+`popcount(x)` counts set bits, `ctz` counts trailing zeros, `clz` leading zeros (64 for 0).
+'''
+
+[[exercises]]
+name = "bits2"
+dir = "bits"
+mode = "run"
+hint = '''
+`<<` and `>>` shift; `&`, `|` and `^` combine; masks isolate bits.
+'''
+
+[[exercises]]
+name = "bits3"
+dir = "bits"
+mode = "run"
+hint = '''
+Unsigned arithmetic wraps in every build, which is what hashes and PRNGs mean by unsigned math.
+'''
+
+[[exercises]]
+name = "c_interop1"
+dir = "c_interop"
+mode = "run"
+hint = '''
+`extern fn name(args) -> ret;` binds a Goose signature to a C symbol; hypot comes from libm.
+'''
+
+[[exercises]]
+name = "c_interop2"
+dir = "c_interop"
+mode = "run"
+hint = '''
+`extern "cbrt" fn cube_root(...)` binds the C symbol `cbrt` to the Goose name `cube_root`.
+'''
+
+[[exercises]]
+name = "quiz2"
+dir = "quiz"
+mode = "run"
+hint = '''
+A struct, a slice parameter and `sort` with a block are all you need.
+'''
+
+[[exercises]]
+name = "quiz3"
+dir = "quiz"
+mode = "run"
+hint = '''
+Dictionary `update` plus `each_split` counts; sort the result array of structs to find the leader.
+'''
+
+[[exercises]]
+name = "quiz4"
+dir = "quiz"
+mode = "run"
+hint = '''
+Build the tree with `Node&<u32>?` links, walk it recursively with `recursive fn`, and pass the output array as a parameter.
+'''
+
+[[exercises]]
+name = "traits1"
+dir = "traits"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "traits2"
+dir = "traits"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "box1"
+dir = "smart_pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "rc1"
+dir = "smart_pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "arc1"
+dir = "smart_pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "cow1"
+dir = "smart_pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "drop1"
+dir = "smart_pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "macros1"
+dir = "macros"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "comptime1"
+dir = "macros"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "clippy1"
+dir = "clippy"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "from_into"
+dir = "conversions"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "async1"
+dir = "async"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "threads_mutex"
+dir = "threads"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "lifetime_annotations"
+dir = "lifetimes"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "unsafe1"
+dir = "unsafe"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "tuples1"
+dir = "tuples"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "anonymous_structs"
+dir = "structs"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "allocators1"
+dir = "allocators"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "defer1"
+dir = "defer"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "pointers1"
+dir = "pointers"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "labeled_blocks"
+dir = "labeled"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "quiz_traits"
+dir = "quiz"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "vec_capacity"
+dir = "vecs"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "os_str"
+dir = "strings"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "visibility"
+dir = "modules"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "associated_types"
+dir = "generics"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
+
+[[exercises]]
+name = "thread_local"
+dir = "threads"
+mode = "skip"
+hint = '''
+NOT APPLICABLE to Goose, see the comments in this file for the reason and the closest Goose exercise.
+'''
