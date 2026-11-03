@@ -50,8 +50,8 @@ python3 gooslings.py solution NAME   # peek at the reference solution
 ```
 gooslings.py        runner (install / list / run / verify / watch / hint / reset / solution / selftest)
 info.toml           ordered exercise list: name, dir, mode (run | build | skip), hint
-exercises/<topic>/  the exercises you edit (like rustlings' exercises/)
-solutions/<topic>/  reference solutions (like rustlings' solutions/)
+exercises/NN_<topic>/  the exercises you edit (like rustlings' exercises/)
+solutions/NN_<topic>/ reference solutions (like rustlings' solutions/)
 ```
 
 ## Topics and how they map to rustlings / ziglings
